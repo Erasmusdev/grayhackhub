@@ -1,0 +1,30 @@
+cryptools = include_lib("/lib/crypto.so")
+if not cryptools then exit("Error: Missing crypto library")
+
+computer = get_shell.host_computer
+device = computer.network_devices().split(" ")[0]
+wifi_networks = computer.wifi_networks(device)
+result = []
+
+for wifi_network in wifi_networks
+	wifi_network = wifi_network.split(" ")
+	pwr = wifi_network[1].remove("%").val
+	result.push({"bssid": wifi_network[0], "pwr": pwr, "essid": wifi_network[2]})
+end for
+result.sort("pwr", false)
+target = result[0]
+
+print(target)
+maxAcks = user_input("maxAcks: ").val
+
+cryptools.airmon("start", device)
+cryptools.aireplay(target.bssid, target.essid, maxAcks)
+cryptools.airmon("stop", device)
+
+cap_file = computer.File("file.cap")
+password = cryptools.aircrack(cap_file.path)
+cap_file.delete()
+
+print("password; " + password)
+
+computer.connect_wifi(device, target.bssid, target.essid, password)

@@ -1,0 +1,108 @@
+/* === EXISTING STYLES === */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background-color: #00ff7f; border-radius: 10px; }
+
+.text-shadow-neon { text-shadow: 0 0 5px rgba(0, 255, 127, 0.8); }
+
+body {
+    background-color: #0a0d14;
+    background-image:
+        linear-gradient(rgba(0, 255, 127, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 127, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: backgroundShift 60s linear infinite;
+}
+@keyframes backgroundShift {
+    from { background-position: 0 0; }
+    to { background-position: 4000px 4000px; }
+}
+
+.glow-border {
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.glow-border:hover {
+    border-color: #00ff7f;
+    box-shadow: 0 0 18px rgba(0, 255, 127, 0.6);
+    transform: translateY(-3px);
+}
+
+.btn-neon {
+    background-color: #00ff7f;
+    color: #111827;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-neon:hover {
+    background-color: #6366f1;
+    color: white;
+    box-shadow: 0 0 15px #6366f1, 0 0 25px rgba(99, 102, 241, 0.6);
+}
+
+.active-link {
+    text-shadow: 0 0 8px #00ff7f;
+    color: #00ff7f !important;
+    border-bottom: 2px solid #00ff7f;
+    padding-bottom: 4px;
+}
+
+.section-header { position: relative; }
+.section-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff7f, rgba(0, 255, 127, 0.2) 70%, transparent 100%);
+}
+
+#message-box {
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+/* === NEW: TEXT COLOR UTILITY CLASSES === */
+.text-primary {
+    color: #00ff7f !important; /* neon green */
+}
+
+.text-accent {
+    color: #6366f1 !important; /* indigo */
+}
+
+.text-danger {
+    color: #ef4444 !important; /* red */
+}
+
+.text-warning {
+    color: #facc15 !important; /* yellow */
+}
+
+.text-muted {
+    color: #9ca3af !important; /* grayish */
+}
+
+.text-dark {
+    color: #0a0d14 !important;
+}
+
+.text-light {
+    color: #e5e7eb !important;
+}
+
+/* === NEW: HEADINGS COLOR PRESETS === */
+h1, h2, h3, h4, h5 {
+    color: #00ff7f;
+    text-shadow: 0 0 6px rgba(0, 255, 127, 0.4);
+}
+
+/* === OPTIONAL: Easy background helpers === */
+.bg-dark { background-color: #0a0d14 !important; }
+.bg-card { background-color: #1a202c !important; }
+.bg-accent { background-color: #6366f1 !important; }
+.bg-primary { background-color: #00ff7f !important; color: #0a0d14 !important; }

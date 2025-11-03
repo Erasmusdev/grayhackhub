@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrayHack Community Hub - Visual Overrides</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration and Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gh-primary': '#00ff7f',
+                        'gh-dark': '#0a0d14',
+                        'gh-card-bg': '#1a202c',
+                        'gh-accent': '#6366f1',
+                        'gh-red': '#ef4444',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Consolas', 'Monaco', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neon-sm': '0 0 5px rgba(0, 255, 127, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background-color: #00ff7f; border-radius: 10px; }
+        .text-shadow-neon { text-shadow: 0 0 5px rgba(0, 255, 127, 0.8); }
+        body {
+            background-color: #0a0d14; 
+            background-image:
+                linear-gradient(rgba(0, 255, 127, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 127, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: backgroundShift 60s linear infinite;
+        }
+        @keyframes backgroundShift {
+            from { background-position: 0 0; }
+            to { background-position: 4000px 4000px; } 
+        }
+        .glow-border { border: 1px solid rgba(0, 255, 127, 0.2); transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .glow-border:hover { border-color: #00ff7f; box-shadow: 0 0 18px rgba(0, 255, 127, 0.6); transform: translateY(-3px); }
+        .btn-neon { background-color: #00ff7f; color: #111827; transition: all 0.2s ease-in-out; position: relative; overflow: hidden; z-index: 1; }
+        .btn-neon:hover { background-color: #6366f1; color: white; box-shadow: 0 0 15px #6366f1, 0 0 25px rgba(99,102,241,0.6); }
+        .active-link { text-shadow: 0 0 8px #00ff7f; color: #00ff7f !important; border-bottom: 2px solid #00ff7f; padding-bottom: 4px; }
+        .section-header { position: relative; }
+        .section-header::before { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: linear-gradient(90deg, #00ff7f, rgba(0, 255, 127, 0.2) 70%, transparent 100%); }
+        .card-image-container { width: 100%; padding-bottom: 56.25%; position: relative; background-color: #0e1117; border-bottom: 1px solid rgba(0, 255, 127, 0.1); }
+        .card-image-container img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; }
+    </style>
+</head>
+<body class="bg-gh-dark text-gray-200 min-h-screen font-sans">
+
+    <!-- Header & Navigation -->
+    <header class="p-4 bg-gh-dark border-b border-gh-primary/50 shadow-neon-sm sticky top-0 z-50 backdrop-filter backdrop-blur-sm bg-opacity-80">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-mono text-gh-primary font-bold tracking-widest text-shadow-neon logo-link">
+                GRAYHACK_HUB
+            </a>
+            <nav class="flex space-x-4 items-center">
+                <a href="visual-overrides.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold active-link">Visual Overrides</a>
+                <a href="tactical-scripts.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Tactical Scripts</a>
+                <a href="data-logs.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Data Logs</a>
+                <a href="forum.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Forum</a>
+                <a href="./submittheme.html" class="px-4 py-2 rounded-lg text-sm btn-neon uppercase font-bold ml-4">Upload Theme</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-4 md:p-8">
+        <section id="content-themes" class="mb-16">
+            <h2 class="text-4xl font-mono font-bold mb-8 text-gh-primary pb-2 section-header text-shadow-neon">
+                <span class="text-gh-accent">01 //</span> Visual Overrides (Themes)
+            </h2>
+            <p class="text-gray-400 mb-8 max-w-4xl">
+                Download community-created visual overhauls to customize your terminal interface. Each override includes custom color palettes, font configurations, and enhanced UI elements for improved operational aesthetics.
+            </p>
+
+            <div id="themes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[300px]">
+                <p id="loading-message" class="col-span-full text-center text-gh-primary/70 font-mono animate-pulse">
+                    &gt; LOADING_STATIC_THEME_MANIFEST...
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 mt-12 bg-gh-dark border-t border-gh-primary/50 text-center relative z-10">
+        <p class="text-sm text-gray-500 font-mono">
+            &copy; 2025 GRAYHACK Community. All rights reserved. | Fan-made Content Repository.
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./javascript/themes-data.js"></script>
+    <script>
+        function handleThemeDownload(themeId, themeName) {
+            const theme = STATIC_THEMES_DATA.find(t => t.id === themeId);
+            if (theme && theme.downloadPath) {
+                const link = document.createElement('a');
+                link.href = theme.downloadPath;
+                link.download = theme.downloadPath.split('/').pop();
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                console.log(`[LOG] Download started for ${themeName}.`);
+            } else {
+                console.error(`[ERROR] Theme ${themeName} not found or download path missing.`);
+            }
+        }
+
+        function renderThemes(themes) {
+            const container = document.getElementById('themes-container');
+            container.innerHTML = '';
+
+            themes.forEach(theme => {
+                const cardHtml = `
+                    <div class="bg-gh-card-bg rounded-lg glow-border flex flex-col">
+                        <div class="card-image-container">
+                            <img src="${theme.preview}" alt="${theme.name} Preview" class="rounded-t-lg">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gh-primary mb-1">${theme.name}</h3>
+                            <p class="text-xs font-mono text-gh-accent mb-2">AUTHOR: ${theme.author}</p>
+                            <p class="text-gray-400 text-sm mb-3 flex-grow">${theme.description}</p>
+                            <div class="flex justify-between items-center mt-auto">
+                                <span class="text-xs text-gray-500 font-mono">v${theme.version} // ${theme.downloads} Downloads</span>
+                                <button class="px-3 py-1.5 rounded-md text-sm bg-gh-accent hover:bg-indigo-500 transition duration-150 font-semibold"
+                                        onclick="handleThemeDownload('${theme.id}', '${theme.name}')">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        window.onload = () => {
+            renderThemes(STATIC_THEMES_DATA);
+        };
+    </script>
+
+</body>
+</html>
