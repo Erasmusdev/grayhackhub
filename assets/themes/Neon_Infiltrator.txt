@@ -1,129 +1,255 @@
 <?xml version="1.0" encoding="utf-16"?>
 <UI_Theme xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <title>
-    <r>0</r><g>255</g><b>127</b><a>200</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>200</a>
   </title>
   <titleText>
-    <r>0</r><g>255</g><b>191</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>191</b>
+    <a>255</a>
   </titleText>
   <title_buttons>
-    <r>0</r><g>60</g><b>30</b><a>180</a>
+    <r>0</r>
+    <g>60</g>
+    <b>30</b>
+    <a>180</a>
   </title_buttons>
   <title_buttons_foreground>
-    <r>210</r><g>255</g><b>210</b><a>255</a>
+    <r>210</r>
+    <g>255</g>
+    <b>210</b>
+    <a>255</a>
   </title_buttons_foreground>
   <window_background>
-    <r>0</r><g>15</g><b>8</b><a>200</a>
+    <r>0</r>
+    <g>15</g>
+    <b>8</b>
+    <a>200</a>
   </window_background>
   <remoteConnection>
-    <r>10</r><g>30</g><b>10</b><a>255</a>
+    <r>10</r>
+    <g>30</g>
+    <b>10</b>
+    <a>255</a>
   </remoteConnection>
   <buttons_background>
-    <r>0</r><g>80</g><b>40</b><a>255</a>
+    <r>0</r>
+    <g>80</g>
+    <b>40</b>
+    <a>255</a>
   </buttons_background>
   <buttons_text>
-    <r>0</r><g>255</g><b>180</b><a>255</a>
+    <r>255</r>
+    <g>255</g>
+    <b>255</b>
+    <a>255</a>
   </buttons_text>
   <buttonsHighlight>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </buttonsHighlight>
   <scrollForeground>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </scrollForeground>
   <scrollBackground>
-    <r>0</r><g>40</g><b>20</b><a>60</a>
+    <r>0</r>
+    <g>40</g>
+    <b>20</b>
+    <a>60</a>
   </scrollBackground>
   <scrollHighlight>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </scrollHighlight>
   <outline>
-    <r>0</r><g>255</g><b>100</b><a>120</a>
+    <r>0</r>
+    <g>255</g>
+    <b>100</b>
+    <a>120</a>
   </outline>
   <terminalText>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </terminalText>
   <terminalBackground>
-    <r>0</r><g>0</g><b>0</b><a>230</a>
+    <r>0</r>
+    <g>0</g>
+    <b>0</b>
+    <a>230</a>
   </terminalBackground>
   <desktopBars>
-    <r>0</r><g>50</g><b>30</b><a>255</a>
+    <r>0</r>
+    <g>50</g>
+    <b>30</b>
+    <a>255</a>
   </desktopBars>
   <desktopIcons>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </desktopIcons>
   <desktopIconsHighlight>
-    <r>255</r><g>255</g><b>255</b><a>255</a>
+    <r>255</r>
+    <g>255</g>
+    <b>255</b>
+    <a>255</a>
   </desktopIconsHighlight>
   <clockText>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </clockText>
   <clockTextHighlight>
-    <r>0</r><g>255</g><b>191</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>191</b>
+    <a>255</a>
   </clockTextHighlight>
   <userText>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </userText>
   <contextualBackground>
-    <r>20</r><g>20</g><b>20</b><a>220</a>
+    <r>20</r>
+    <g>20</g>
+    <b>20</b>
+    <a>220</a>
   </contextualBackground>
   <contextualText>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </contextualText>
   <contextualHighlight>
-    <r>0</r><g>200</g><b>100</b><a>255</a>
+    <r>0</r>
+    <g>200</g>
+    <b>100</b>
+    <a>255</a>
   </contextualHighlight>
   <mainMenuButtonNormal>
-    <r>0</r><g>200</g><b>100</b><a>255</a>
+    <r>0</r>
+    <g>200</g>
+    <b>100</b>
+    <a>255</a>
   </mainMenuButtonNormal>
   <mainMenuButtonHighlight>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </mainMenuButtonHighlight>
   <desktopIconsText>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>0</g>
+    <b>0</b>
+    <a>255</a>
   </desktopIconsText>
   <buttons_images>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </buttons_images>
   <outline_root>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </outline_root>
   <taskbar_focused>
-    <r>0</r><g>40</g><b>20</b><a>255</a>
+    <r>0</r>
+    <g>40</g>
+    <b>20</b>
+    <a>255</a>
   </taskbar_focused>
   <taskbar_focused_highlight>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </taskbar_focused_highlight>
   <taskbar_task>
-    <r>0</r><g>30</g><b>15</b><a>255</a>
+    <r>0</r>
+    <g>30</g>
+    <b>15</b>
+    <a>255</a>
   </taskbar_task>
   <taskbar_task_highlight>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </taskbar_task_highlight>
   <taskbar_icons>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </taskbar_icons>
   <taskbar_text>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </taskbar_text>
   <dropdown_foreground>
-    <r>0</r><g>255</g><b>127</b><a>60</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>60</a>
   </dropdown_foreground>
   <dropdown_background>
-    <r>0</r><g>20</g><b>10</b><a>255</a>
+    <r>0</r>
+    <g>20</g>
+    <b>10</b>
+    <a>255</a>
   </dropdown_background>
   <dropdown_highlight>
-    <r>0</r><g>50</g><b>25</b><a>255</a>
+    <r>0</r>
+    <g>50</g>
+    <b>25</b>
+    <a>255</a>
   </dropdown_highlight>
   <dropdown_text>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>255</r>
+    <g>255</g>
+    <b>255</b>
+    <a>255</a>
   </dropdown_text>
   <notif_icons>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </notif_icons>
   <notif_text>
-    <r>0</r><g>255</g><b>127</b><a>255</a>
+    <r>0</r>
+    <g>255</g>
+    <b>127</b>
+    <a>255</a>
   </notif_text>
   <notif_background>
-    <r>0</r><g>15</g><b>8</b><a>255</a>
+    <r>0</r>
+    <g>15</g>
+    <b>8</b>
+    <a>255</a>
   </notif_background>
 </UI_Theme>
