@@ -8,22 +8,4 @@ const STATIC_SCRIPTS_DATA = [
         usage: 'wifihack --7000 <PACKET_COUNT>',
         downloadPath: './assets/scripts/wifihack.src' // <-- add this
     },
-        { 
-        id: '2script-2', 
-        name: 'Wifi Hack V2', 
-        author: 'Gendo', 
-        description: 'Advanced hack for faster wifi access.',
-        version: '1.0.0',
-        usage: 'wifihack --7000 <PACKET_COUNT>',
-        downloadPath: './assets/scripts/wifihack.src' // <-- add this
-    },
-            { 
-        id: 'script-3', 
-        name: 'Test', 
-        author: 'Flockers', 
-        description: 'Advanced hack for faster wifi access.',
-        version: '1.0.0',
-        usage: 'wifihack --7000 <PACKET_COUNT>',
-        downloadPath: './assets/scripts/wifihack.src' // <-- add this
-    },
 ];
