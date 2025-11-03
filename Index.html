@@ -1,204 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrayHack Community Hub - Home Console</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration and Custom CSS (Acting as the "Separate" CSS file) -->
-    <script>
-        // Tailwind Configuration
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gh-primary': '#00ff7f', // Neon Green
-                        'gh-dark': '#0a0d14', // Even darker background
-                        'gh-card-bg': '#1a202c', // Slightly lighter dark for cards
-                        'gh-accent': '#6366f1', // Indigo for buttons/hover
-                        'gh-red': '#ef4444', // Red for errors
-                        'gh-yellow': '#facc15', // Yellow for warnings
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Consolas', 'Monaco', 'monospace'],
-                    },
-                    boxShadow: {
-                        'neon-sm': '0 0 5px rgba(0, 255, 127, 0.6)',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom Styles for Modern Hacky Look (The equivalent of a separate CSS file) */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background-color: #00ff7f; border-radius: 10px; }
-        .text-shadow-neon { text-shadow: 0 0 5px rgba(0, 255, 127, 0.8); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrayHack Community Hub - Home Console</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'gh-primary': '#00ff7f',
+        'gh-dark': '#0a0d14',
+        'gh-card-bg': '#1a202c',
+        'gh-accent': '#6366f1',
+        'gh-red': '#ef4444',
+        'gh-yellow': '#facc15',
+      },
+      fontFamily: {
+        sans: ['Inter','sans-serif'],
+        mono: ['Consolas','Monaco','monospace'],
+      },
+      boxShadow: { 'neon-sm': '0 0 5px rgba(0, 255, 127, 0.6)' }
+    }
+  }
+}
+</script>
+<style>
+/* Background & Neon */
+body {
+  background-color: #0a0d14;
+  background-image:
+    linear-gradient(rgba(0,255,127,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,127,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: backgroundShift 60s linear infinite;
+}
+@keyframes backgroundShift { from{background-position:0 0;} to{background-position:4000px 4000px;} }
 
-        /* Modern Hacky Background Pattern */
-        body {
-            background-color: #0a0d14; 
-            background-image:
-                linear-gradient(rgba(0, 255, 127, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 127, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            animation: backgroundShift 60s linear infinite;
-        }
-        @keyframes backgroundShift {
-            from { background-position: 0 0; }
-            to { background-position: 4000px 4000px; } 
-        }
-        
-        /* Card glow effect */
-        .glow-border {
-            border: 1px solid rgba(0, 255, 127, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden; 
-        }
-        .glow-border:hover {
-            border-color: #00ff7f;
-            box-shadow: 0 0 18px rgba(0, 255, 127, 0.6);
-            transform: translateY(-3px);
-        }
+/* Glowing borders & hover */
+.glow-border { border:1px solid rgba(0,255,127,0.2); transition:all 0.3s ease; position:relative; overflow:hidden; }
+.glow-border:hover { border-color:#00ff7f; box-shadow:0 0 18px rgba(0,255,127,0.6); transform:translateY(-3px) scale(1.02); }
 
-        .btn-neon {
-            background-color: #00ff7f; color: #111827; transition: all 0.2s ease-in-out;
-            position: relative; overflow: hidden; z-index: 1;
-        }
-        .btn-neon:hover {
-            background-color: #6366f1; color: white;
-            box-shadow: 0 0 15px #6366f1, 0 0 25px rgba(99, 102, 241, 0.6);
-        }
+/* Neon buttons */
+.btn-neon { background-color:#00ff7f; color:#111827; transition:all 0.2s ease-in-out; position:relative; overflow:hidden; z-index:1; }
+.btn-neon:hover { background-color:#6366f1; color:white; box-shadow:0 0 15px #6366f1,0 0 25px rgba(99,102,241,0.6);}
 
-        /* Active link styling for the current page */
-        .active-link {
-            text-shadow: 0 0 8px #00ff7f;
-            color: #00ff7f !important;
-            border-bottom: 2px solid #00ff7f;
-            padding-bottom: 4px;
-        }
+/* Section header underline */
+.section-header{position:relative;}
+.section-header::before{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:linear-gradient(90deg,#00ff7f,rgba(0,255,127,0.2)70%,transparent 100%);}
 
-        .section-header { position: relative; }
-        .section-header::before {
-            content: '';
-            position: absolute; left: 0; bottom: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, #00ff7f, rgba(0, 255, 127, 0.2) 70%, transparent 100%);
-        }
-    </style>
+/* Blinking cursor */
+.blinking-cursor { display:inline-block; width:1ch; background-color:#00ff7f; animation: blink 1s step-start infinite; }
+@keyframes blink { 50%{background-color:transparent;} }
+
+/* Glitch header effect */
+.glitch { position:relative; color:#00ff7f; animation: glitch 1.2s infinite; }
+@keyframes glitch {
+  0%,100% { text-shadow:0 0 2px #00ff7f; }
+  20% { text-shadow:2px 0 5px #00ff7f,-2px 0 5px #6366f1; }
+  40% { text-shadow:-2px 0 5px #00ff7f,2px 0 5px #6366f1; }
+  60% { text-shadow:2px 2px 5px #00ff7f,-2px -2px 5px #6366f1; }
+  80% { text-shadow:-2px 2px 5px #00ff7f,2px -2px 5px #6366f1; }
+}
+
+/* Traffic bars */
+.traffic-bar { height:4px; background:#00ff7f; border-radius:2px; transition:width 1s ease-in-out; }
+
+/* Alert flashing */
+.alert-flash { animation: flash 1.2s ease-in-out; }
+@keyframes flash { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+/* Loader screen */
+#loader {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background-color:#0a0d14; display:flex; justify-content:center; align-items:center;
+  z-index:9999; flex-direction:column; opacity: 1; transition: opacity 1s ease;
+}
+.loader-text { font-family: monospace; color:#00ff7f; font-size:2rem; text-shadow:0 0 10px #00ff7f; margin-bottom:1rem; }
+.loader-bar { width:300px; height:6px; background:rgba(0,255,127,0.2); border-radius:3px; overflow:hidden; }
+.loader-fill { width:0%; height:100%; background:#00ff7f; animation: fillLoader 3s forwards; }
+@keyframes fillLoader { 0% {width:0%;} 100% {width:100%;} }
+</style>
 </head>
 <body class="bg-gh-dark text-gray-200 min-h-screen font-sans">
 
-    <!-- Header & Navigation -->
-    <header class="p-4 bg-gh-dark border-b border-gh-primary/50 shadow-neon-sm sticky top-0 z-50 backdrop-filter backdrop-blur-sm bg-opacity-80">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-mono text-gh-primary font-bold tracking-widest text-shadow-neon logo-link active-link">
-                GRAYHACK_HUB
-            </a>
-            <nav class="flex space-x-6">
-                <!-- Home is effectively the active link via the logo -->
-                <a href="visual-overrides.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Visual Overrides</a>
-                <a href="tactical-scripts.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Tactical Scripts</a>
-                <a href="data-logs.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Data Logs</a>
-                <a href="forum.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Forum</a>
-            </nav>
-        </div>
-    </header>
+<!-- Fullscreen Loader -->
+<div id="loader">
+  <div class="loader-text">&gt; INITIALIZING_OPERATOR_CONSOLE...</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
 
-    <!-- Main Content Container for Operator Console Page -->
-    <main class="max-w-7xl mx-auto p-4 md:p-8">
+<header class="p-4 bg-gh-dark border-b border-gh-primary/50 shadow-neon-sm sticky top-0 z-50 backdrop-filter backdrop-blur-sm bg-opacity-80 flex justify-between items-center">
+<a href="index.html" class="text-2xl font-mono text-gh-primary font-bold tracking-widest glitch">GRAYHACK_HUB</a>
+<nav class="flex space-x-6 items-center">
+<a href="visual-overrides.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Visual Overrides</a>
+<a href="tactical-scripts.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Tactical Scripts</a>
+<a href="data-logs.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Data Logs</a>
+<a href="forum.html" class="nav-link text-gray-400 hover:text-gh-primary transition duration-200 font-semibold">Forum</a>
+<span id="server-time" class="ml-4 font-mono text-gh-accent"></span>
+</nav>
+</header>
 
-        <!-- Console Welcome Banner -->
-        <section class="mb-12 p-8 bg-gh-card-bg/70 rounded-lg border-2 border-gh-primary/40 shadow-xl">
-            <p class="text-xl font-mono text-gh-primary mb-2 animate-pulse">
-                &gt; INITIALIZING_OPERATOR_CONSOLE... [COMPLETE]
-            </p>
-            <h1 class="text-5xl md:text-6xl font-mono font-bold text-gh-primary text-shadow-neon mb-4">
-                <span class="text-gh-accent">//</span> Welcome Back, Operator
-            </h1>
-            <p class="text-lg text-gray-400 max-w-4xl">
-                The GrayHack community is fully synchronized. Navigate the available modules (Visual Overrides, Tactical Scripts, and Data Logs) using the header menu above.
-            </p>
-        </section>
+<main class="max-w-7xl mx-auto p-4 md:p-8">
 
-        <!-- System Status Dashboard -->
-        <section class="mb-12">
-            <h2 class="text-3xl font-mono font-bold mb-6 text-gh-accent pb-1 section-header">
-                [HUB_STATUS_REPORT]
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                
-                <!-- Stat Card 1: Active Users -->
-                <div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center">
-                    <p class="text-4xl font-mono font-bold text-gh-primary">789</p>
-                    <p class="text-sm text-gray-400 mt-1">Active Operators</p>
-                </div>
+<section class="mb-12 p-8 bg-gh-card-bg/70 rounded-lg border-2 border-gh-primary/40 shadow-xl">
+<p class="text-xl font-mono text-gh-primary mb-2 animate-pulse">&gt; INITIALIZING_OPERATOR_CONSOLE... [COMPLETE]</p>
+<h1 class="text-5xl md:text-6xl font-mono font-bold text-gh-primary text-shadow-neon mb-4"><span class="text-gh-accent">//</span> Welcome Back, Operator<span class="blinking-cursor"></span></h1>
+<p class="text-lg text-gray-400 max-w-4xl">The GrayHack community is fully synchronized. Navigate the available modules using the header menu above.</p>
+</section>
 
-                <!-- Stat Card 2: Script Health -->
-                <div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center">
-                    <p class="text-4xl font-mono font-bold text-gh-primary">99.7%</p>
-                    <p class="text-sm text-gray-400 mt-1">Script Integrity</p>
-                </div>
+<section class="mb-12">
+<h2 class="text-3xl font-mono font-bold mb-6 text-gh-accent pb-1 section-header">[HUB_STATUS_REPORT]</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center hover:scale-105 transition-transform">
+<p id="active-users" class="text-4xl font-mono font-bold text-gh-primary">0</p>
+<div class="traffic-bar w-1/2 mx-auto my-2"></div>
+<p class="text-sm text-gray-400 mt-1">Active Operators</p>
+</div>
+<div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center hover:scale-105 transition-transform">
+<p id="script-health" class="text-4xl font-mono font-bold text-gh-primary">0%</p>
+<div class="traffic-bar w-1/2 mx-auto my-2"></div>
+<p class="text-sm text-gray-400 mt-1">Script Integrity</p>
+</div>
+<div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center hover:scale-105 transition-transform">
+<p id="pending-uploads" class="text-4xl font-mono font-bold text-gh-yellow">0</p>
+<div class="traffic-bar w-1/2 mx-auto my-2"></div>
+<p class="text-sm text-gray-400 mt-1">Pending Payloads</p>
+</div>
+<div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center hover:scale-105 transition-transform">
+<p id="data-latency" class="text-xl font-mono font-bold text-gh-red md:text-2xl">0.00 sec</p>
+<div class="traffic-bar w-1/2 mx-auto my-2"></div>
+<p class="text-sm text-gray-400 mt-1">Data Latency</p>
+</div>
+</div>
+</section>
 
-                <!-- Stat Card 3: New Uploads -->
-                <div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center">
-                    <p class="text-4xl font-mono font-bold text-gh-yellow">12</p>
-                    <p class="text-sm text-gray-400 mt-1">Pending Payloads</p>
-                </div>
+<section class="mb-16">
+<h2 class="text-3xl font-mono font-bold mb-6 text-gh-accent pb-1 section-header">[ACTIVITY_LOG]</h2>
+<div id="activity-log" class="bg-gh-card-bg rounded-lg glow-border p-6 font-mono text-sm h-64 overflow-y-auto"></div>
+</section>
 
-                <!-- Stat Card 4: Last Sync Time -->
-                <div class="bg-gh-card-bg p-4 rounded-lg glow-border text-center">
-                    <p class="text-xl font-mono font-bold text-gh-red md:text-2xl">0.08 sec</p>
-                    <p class="text-sm text-gray-400 mt-1">Data Latency</p>
-                </div>
-            </div>
-        </section>
+</main>
 
-        <!-- Recent Activity Feed -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-mono font-bold mb-6 text-gh-accent pb-1 section-header">
-                [ACTIVITY_LOG]
-            </h2>
-            <div class="bg-gh-card-bg rounded-lg glow-border p-6 font-mono text-sm">
-                
-                <div class="border-b border-gray-700/50 py-2 flex justify-between">
-                    <span class="text-gh-primary">[UPLOAD]</span>
-                    <span class="text-gray-400">Tactical Script v4.1 (Port Scanner) submitted by Op_Echo.</span>
-                    <span class="text-gray-500">2 min ago</span>
-                </div>
-                
-                <div class="border-b border-gray-700/50 py-2 flex justify-between">
-                    <span class="text-gh-accent">[THEME]</span>
-                    <span class="text-gray-400">Minimalist DeepSea override updated to fix font rendering.</span>
-                    <span class="text-gray-500">1 hour ago</span>
-                </div>
-                
-                <div class="border-b border-gray-700/50 py-2 flex justify-between">
-                    <span class="text-gh-yellow">[FORUM]</span>
-                    <span class="text-gray-400">New discussion thread started: "Optimal use of memory decoys."</span>
-                    <span class="text-gray-500">3 hours ago</span>
-                </div>
-                
-                <div class="py-2 flex justify-between">
-                    <span class="text-gh-red">[ALERT]</span>
-                    <span class="text-red-400 font-bold">Data Log 7-3: Audit failed due to corrupted checksum.</span>
-                    <span class="text-gray-500">1 day ago</span>
-                </div>
+<footer class="p-4 mt-12 bg-gh-dark border-t border-gh-primary/50 text-center relative z-10">
+<p class="text-sm text-gray-500 font-mono">&copy; 2025 GRAYHACK Community. All rights reserved. | Fan-made Content Repository.</p>
+</footer>
 
-            </div>
-        </section>
+<script>
+// Loader with fade and localStorage
+window.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  const firstVisit = !localStorage.getItem('consoleInitialized');
+  if(firstVisit){
+    loader.style.display = 'flex';
+    setTimeout(() => {
+      loader.style.opacity = 0;
+      setTimeout(() => {
+        loader.style.display = 'none';
+        localStorage.setItem('consoleInitialized', 'true');
+      }, 1000);
+    }, 3000);
+  } else {
+    loader.style.display = 'none';
+  }
+});
 
-    </main>
+// Live server clock
+function updateClock(){ document.getElementById('server-time').textContent = new Date().toLocaleTimeString(); }
+setInterval(updateClock,1000);
 
-    <!-- Footer -->
-    <footer class="p-4 mt-12 bg-gh-dark border-t border-gh-primary/50 text-center relative z-10">
-        <p class="text-sm text-gray-500 font-mono">
-            &copy; 2025 GRAYHACK Community. All rights reserved. | Fan-made Content Repository.
-        </p>
-    </footer>
+// Counter base values
+const counters = { 'active-users':789,'script-health':99,'pending-uploads':12,'data-latency':0.08 };
+
+// Traffic bar animation
+function randomTraffic(bar){ bar.style.width=`${30+Math.random()*70}%`; }
+
+// Live counters + traffic
+function updateCounter(id,float=false,precision=0){
+  const el=document.getElementById(id);
+  let val=counters[id];
+  const change=float?(Math.random()-0.5)*0.2:Math.floor(Math.random()*5-2);
+  val += change;
+  if(id==='active-users') val=Math.max(0,val);
+  if(id==='script-health') val=Math.min(100,Math.max(90,val));
+  if(id==='pending-uploads') val=Math.max(0,val);
+  if(id==='data-latency') val=Math.max(0,val);
+  counters[id]=val;
+  const start=parseFloat(el.textContent)||0, steps=20, stepInc=(val-start)/steps;
+  let step=0;
+  const timer=setInterval(()=>{
+    step++;
+    const newVal=start+stepInc*step;
+    if(float) el.textContent=newVal.toFixed(precision)+(id==='data-latency'?' sec':'');
+    else el.textContent=Math.floor(newVal)+(id==='script-health'?'%':'');
+    if(step>=steps) clearInterval(timer);
+  },50);
+  const bar=el.nextElementSibling; if(bar) randomTraffic(bar);
+}
+function startLiveCounters(){
+  updateCounter('active-users');
+  updateCounter('script-health',true,1);
+  updateCounter('pending-uploads');
+  updateCounter('data-latency',true,2);
+  setTimeout(startLiveCounters,2500);
+}
+
+// Activity log
+const activities=[
+  {type:'[UPLOAD]',text:'Tactical Script v4.1 (Port Scanner) submitted by Op_Echo.',time:'2 min ago'},
+  {type:'[THEME]',text:'Minimalist DeepSea override updated to fix font rendering.',time:'1 hour ago'},
+  {type:'[FORUM]',text:'New discussion thread started: "Optimal use of memory decoys."',time:'3 hours ago'},
+  {type:'[ALERT]',text:'Data Log 7-3: Audit failed due to corrupted checksum.',time:'1 day ago',color:'text-red-400 font-bold alert-flash'}
+];
+function typeWriterLog(el,message,speed=30,callback){
+  let i=0;
+  function type(){ if(i<message.length){ el.innerHTML+=message.charAt(i); i++; setTimeout(type,speed); } else if(callback) callback(); }
+  type();
+}
+function animateActivityLog(){
+  const logContainer=document.getElementById('activity-log');
+  activities.forEach((entry,index)=>{
+    setTimeout(()=>{
+      const div=document.createElement('div');
+      div.className='border-b border-gray-700/50 py-2 flex justify-between';
+      if(entry.color) div.className+=' '+entry.color;
+      const left=document.createElement('span');
+      left.className='mr-2 '+(entry.color||'text-gh-primary'); left.textContent=entry.type;
+      const center=document.createElement('span'); center.className='flex-grow text-gray-400';
+      logContainer.appendChild(div); div.appendChild(left); div.appendChild(center);
+      const right=document.createElement('span'); right.className='text-gray-500'; right.textContent=entry.time;
+      div.appendChild(right); typeWriterLog(center,entry.text);
+    },index*1000);
+  });
+}
+
+// Initialize everything
+window.onload=()=>{ startLiveCounters(); animateActivityLog(); updateClock(); };
+</script>
 
 </body>
 </html>
