@@ -31,13 +31,8 @@
   </script>
 
   <style>
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #00ff7f;
-      border-radius: 10px;
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background-color: #00ff7f; border-radius: 10px; }
 
     body {
       background-color: #0a0d14;
@@ -47,7 +42,6 @@
       background-size: 40px 40px;
       animation: backgroundShift 60s linear infinite;
     }
-
     @keyframes backgroundShift {
       from { background-position: 0 0; }
       to { background-position: 4000px 4000px; }
@@ -61,28 +55,20 @@
       overflow: hidden;
       z-index: 1;
     }
-
     .btn-neon:hover {
       background-color: #6366f1;
       color: white;
       box-shadow: 0 0 15px #6366f1, 0 0 25px rgba(99, 102, 241, 0.6);
     }
-
     .active-link {
       text-shadow: 0 0 8px #00ff7f;
       color: #00ff7f !important;
       border-bottom: 2px solid #00ff7f;
       padding-bottom: 4px;
     }
+    .text-shadow-neon { text-shadow: 0 0 5px rgba(0, 255, 127, 0.8); }
 
-    .text-shadow-neon {
-      text-shadow: 0 0 5px rgba(0, 255, 127, 0.8);
-    }
-
-    .section-header {
-      position: relative;
-    }
-
+    .section-header { position: relative; }
     .section-header::before {
       content: '';
       position: absolute;
@@ -92,6 +78,8 @@
       height: 2px;
       background: linear-gradient(90deg, #00ff7f, rgba(0, 255, 127, 0.2) 70%, transparent 100%);
     }
+
+    #loading-message { transition: opacity 1s ease; }
   </style>
 </head>
 
@@ -111,8 +99,11 @@
     </nav>
   </header>
 
+  <!-- Background Canvas -->
+  <canvas id="data-stream" class="fixed inset-0 opacity-10 pointer-events-none z-0"></canvas>
+
   <!-- Main -->
-  <main class="max-w-7xl mx-auto p-4 md:p-8">
+  <main class="max-w-7xl mx-auto p-4 md:p-8 relative z-10">
     <section id="content-scripts" class="mb-16">
       <h2 class="text-4xl font-mono font-bold mb-8 text-gh-primary pb-2 section-header">
         <span class="text-gh-accent">02 //</span> Tactical Scripts
@@ -121,10 +112,11 @@
         Browse and download verified combat, utility, and resource management scripts. All files have passed integrity checks, but operator discretion is advised.
       </p>
 
+      <!-- Loader + Content -->
       <div id="scripts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[300px]">
-        <p id="loading-message" class="col-span-full text-center text-gh-primary/70 font-mono animate-pulse">
-          &gt; LOADING_STATIC_SCRIPT_MANIFEST...
-        </p>
+        <div id="loading-message" class="col-span-full text-center font-mono text-gh-primary text-sm">
+          <span id="terminal-loader"></span>
+        </div>
       </div>
     </section>
   </main>
@@ -140,14 +132,86 @@
   <script src="./javascript/data.js"></script>
   <script src="./javascript/app.js"></script>
 
+  <!-- Clock -->
   <script>
-    // Live clock (like index)
     function updateClock() {
       const clock = document.getElementById('server-time');
       if (clock) clock.textContent = new Date().toLocaleTimeString();
     }
     updateClock();
     setInterval(updateClock, 1000);
+  </script>
+
+  <!-- Background Effect -->
+  <script>
+    const canvas = document.getElementById('data-stream');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = Array(256).join(1).split('');
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff7f';
+      letters.map((y, i) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        const x = i * 10;
+        ctx.fillText(text, x, y);
+        letters[i] = y > canvas.height + Math.random() * 1e4 ? 0 : y + 10;
+      });
+    }
+    setInterval(draw, 50);
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+
+  <!-- Terminal Loader -->
+  <script>
+    const loadingTextLines = [
+      '> INITIALIZING_TACTICAL_SCRIPT_MANIFEST...',
+      '> LOADING_SYSTEM_MODULES [███████▒▒▒] 70%',
+      '> VERIFYING_CHECKSUMS...',
+      '> CONNECTION_ESTABLISHED',
+      '> SYSTEM_READY_FOR_DEPLOYMENT'
+    ];
+
+    let lineIndex = 0;
+    const terminal = document.getElementById('terminal-loader');
+
+    function typeLine(line, callback) {
+      let i = 0;
+      const interval = setInterval(() => {
+        terminal.innerHTML = line.substring(0, i++) + '<span class="text-gh-accent">_</span>';
+        if (i++ > line.length) {
+          clearInterval(interval);
+          terminal.innerHTML = line;
+          setTimeout(callback, 600);
+        }
+      }, 30);
+    }
+
+    function startTerminalLoad() {
+      if (lineIndex < loadingTextLines.length) {
+        typeLine(loadingTextLines[lineIndex++], startTerminalLoad);
+      } else {
+        const loading = document.getElementById('loading-message');
+        setTimeout(() => {
+          loading.style.opacity = '0';
+          setTimeout(() => {
+            loading.remove();
+            // ✅ Render scripts AFTER loader finishes
+            if (typeof renderScripts === 'function') {
+              renderScripts(STATIC_SCRIPTS_DATA);
+            }
+          }, 1000);
+        }, 2000);
+      }
+    }
+
+    window.addEventListener('load', startTerminalLoad);
   </script>
 
 </body>

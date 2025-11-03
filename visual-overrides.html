@@ -113,7 +113,7 @@
       <span id="server-time" class="ml-4 font-mono text-gh-accent"></span>
     </nav>
   </header>
-
+<canvas id="data-stream" class="fixed inset-0 opacity-10 pointer-events-none z-0"></canvas>
   <!-- Main -->
   <main class="max-w-7xl mx-auto p-4 md:p-8">
     <section id="content-themes" class="mb-16">
@@ -196,6 +196,30 @@
       renderThemes(STATIC_THEMES_DATA);
     };
   </script>
+<script>
+const canvas = document.getElementById('data-stream');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = Array(256).join(1).split('');
+function draw() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#00ff7f';
+  letters.map((y_pos, index) => {
+    const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+    const x_pos = index * 10;
+    ctx.fillText(text, x_pos, y_pos);
+    letters[index] = y_pos > 758 + Math.random() * 1e4 ? 0 : y_pos + 10;
+  });
+}
+setInterval(draw, 50);
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
 
 </body>
 </html>
